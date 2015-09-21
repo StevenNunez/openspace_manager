@@ -1,2 +1,10 @@
 <h1>Events</h1>
+{{link-to "Create a new event" 'events.new'}}
+<div>
+  <ul class="list-unstyled">
+  {{#each model as |event|}}
+     <li>{{link-to event.name 'events.event' event.id}}</li>
+  {{/each}}
+  </ul>
+</div>
 {{outlet}}

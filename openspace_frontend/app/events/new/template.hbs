@@ -1,2 +1,4 @@
 <h2>Create an event</h2>
-{{outlet}}
+{{input value=name key-up='generateSlug'}}
+Slug Name: {{slug-name}}
+<input type='submit' value="Create event" {{action 'addEvent'}}>

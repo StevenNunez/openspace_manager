@@ -10,17 +10,14 @@ defmodule OpenspaceBackend.Router do
   end
 
   pipeline :api do
+    plug CORSPlug, [origin: "http://localhost:4200"]
     plug :accepts, ["json"]
   end
 
-  scope "/", OpenspaceBackend do
-    pipe_through :browser # Use the default browser stack
-
-    get "/", PageController, :index
-  end
-
   # Other scopes may use custom stacks.
-  # scope "/api", OpenspaceBackend do
-  #   pipe_through :api
-  # end
+  scope "/api", OpenspaceBackend do
+    pipe_through :api
+    resources "/events", EventController
+    options "/events", EventController, :options
+  end
 end

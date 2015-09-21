@@ -7,7 +7,6 @@ var Router = Ember.Router.extend({
 
 Router.map(function() {
   this.route('events', function(){
-    // this.route('event', {path: "/:event-slug"});
     this.route('new');
     this.route('event', {path: ":event_slug"});
   });

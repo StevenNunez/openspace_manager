@@ -15,8 +15,7 @@ config :phoenix, :stacktrace_depth, 20
 # Configure your database
 config :openspace_backend, OpenspaceBackend.Repo,
   adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
-  password: "postgres",
+  username: "StevenNunez",
   database: "openspace_backend_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox

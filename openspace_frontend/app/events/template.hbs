@@ -3,7 +3,7 @@
 <div>
   <ul class="list-unstyled">
   {{#each model as |event|}}
-     <li>{{link-to event.name 'events.event' event.id}}</li>
+     <li>{{link-to event.name 'events.event' event.slug_name}}</li>
   {{/each}}
   </ul>
 </div>

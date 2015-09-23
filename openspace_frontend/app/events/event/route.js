@@ -2,8 +2,6 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
   model: function(params){
-    return {
-      eventName: params.event_slug
-    }
+    return this.store.find('event', {slugName: params.slug_name});
   }
 });

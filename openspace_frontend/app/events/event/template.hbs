@@ -1,2 +1,11 @@
-<h2>Your event {{model.eventName}}</h2>
+<h2>Your event {{model.name}}</h2>
+{{link-to "Create a new track" 'events.event.tracks.new' model.slug}}
+<div>
+Select a Track
+<ul>
+{{#each model.tracks as |track|}}
+  <li>{{#link-to 'events.event.tracks.track' track.event.slug track.slug}}{{track.name}}{{/link-to}}</li>
+{{/each}}
+</ul>
+</div>
 {{outlet}}

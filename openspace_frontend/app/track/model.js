@@ -3,5 +3,5 @@ import DS from 'ember-data';
 export default DS.Model.extend({
   name: DS.attr('string'),
   slug: DS.attr('string'),
-  tracks: DS.hasMany('track', {async: true})
+  event: DS.belongsTo('event', {async: true})
 });

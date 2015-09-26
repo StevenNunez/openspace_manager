@@ -8,7 +8,12 @@ var Router = Ember.Router.extend({
 Router.map(function() {
   this.route('events', function(){
     this.route('new');
-    this.route('event', {path: ":event_slug"});
+    this.route('event', {path: ":event_slug"}, function(){
+      this.route('tracks', function() {
+        this.route('new');
+        this.route('track', {path: ":track_slug"});
+      });
+    });
   });
 });
 

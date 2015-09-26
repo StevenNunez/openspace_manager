@@ -22,7 +22,7 @@ defmodule OpenspaceBackend.EventTest do
     changeset = Event.changeset(%Event{}, attrs)
     {:ok, event} = Repo.insert(changeset)
     event_from_db = Repo.get!(Event, event.id)
-    assert event_from_db.slug_name == "the-greatest-conference"
+    assert event_from_db.slug == "the-greatest-conference"
   end
 
 

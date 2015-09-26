@@ -26,13 +26,13 @@ defmodule OpenspaceBackend.EventController do
     end
   end
 
-  def show(conn, %{"id" => id}) do
-    event = Repo.get!(Event, id)
+  def show(conn, %{"slug" => slug}) do
+    event = Repo.get_by!(Event, slug: slug) |> Repo.preload :tracks
     render conn, "show.json", event: event
   end
 
-  def update(conn, %{"id" => id, "event" => event_params}) do
-    event = Repo.get!(Event, id)
+  def update(conn, %{"slug" => slug, "event" => event_params}) do
+    event = Repo.get_by!(Event, slug: slug)
     changeset = Event.changeset(event, event_params)
 
     case Repo.update(changeset) do
@@ -45,8 +45,8 @@ defmodule OpenspaceBackend.EventController do
     end
   end
 
-  def delete(conn, %{"id" => id}) do
-    event = Repo.get!(Event, id)
+  def delete(conn, %{"slug" => slug}) do
+    event = Repo.get_by!(Event, slug: slug)
 
     # Here we use delete! (with a bang) because we expect
     # it to always work (and if it does not, it will raise).

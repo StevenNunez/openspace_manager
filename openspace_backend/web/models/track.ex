@@ -1,24 +1,18 @@
-defmodule OpenspaceBackend.Event do
+defmodule OpenspaceBackend.Track do
   use OpenspaceBackend.Web, :model
   before_insert :set_slug
   before_update :set_slug
 
-  schema "events" do
+  schema "tracks" do
     field :name, :string
     field :slug, :string
-    has_many :tracks, OpenspaceBackend.Track
+    belongs_to :event, OpenspaceBackend.Event
 
     timestamps
   end
 
-  @required_fields ~w(name)
+  @required_fields ~w(name event_id)
   @optional_fields ~w(slug)
-
-  def find_by_slug(slug) do
-    from e in __MODULE__,
-    where: e.slug == ^slug,
-    preload: :tracks
-  end
 
   @doc """
   Creates a changeset based on the `model` and `params`.
@@ -26,6 +20,14 @@ defmodule OpenspaceBackend.Event do
   If no params are provided, an invalid changeset is returned
   with no validation performed.
   """
+  def find_by_event_id(event_id) do
+    from t in __MODULE__, where: t.event_id == ^event_id
+  end
+
+  def find_by_slug(slug) do
+    from e in __MODULE__, where: e.slug == ^slug
+  end
+
   def changeset(model, params \\ :empty) do
     model
     |> cast(params, @required_fields, @optional_fields)

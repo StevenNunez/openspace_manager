@@ -17,7 +17,9 @@ defmodule OpenspaceBackend.Router do
   # Other scopes may use custom stacks.
   scope "/api", OpenspaceBackend do
     pipe_through :api
-    resources "/events", EventController
+    resources "/events", EventController, param: "slug"
+    resources "/tracks", TrackController, param: "slug"
     options "/events", EventController, :options
+    options "/tracks", EventController, :options
   end
 end
